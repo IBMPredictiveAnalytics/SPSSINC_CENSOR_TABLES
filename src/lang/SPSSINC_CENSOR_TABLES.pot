@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-01-08 09:01+Mountain Standard Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: SPSSINC_CENSOR_TABLES.py:133
+msgid "---"
+msgstr ""
+
+#: SPSSINC_CENSOR_TABLES.py:207
+msgid "No table found to process."
+msgstr ""
+
+#: SPSSINC_CENSOR_TABLES.py:226
+msgid "A specified item is not a pivot table or does not exist."
+msgstr ""
+
+#: SPSSINC_CENSOR_TABLES.py:244
+msgid "Invalid comparison type: "
+msgstr ""
+
+#: SPSSINC_CENSOR_TABLES.py:270
+msgid "direction must be 'row' or 'column'"
+msgstr ""
+
+#: SPSSINC_CENSOR_TABLES.py:275
+msgid "Censoring criterion: %s.  Number of values censored: %s"
+msgstr ""
+
+#: SPSSINC_CENSOR_TABLES.py:327
+msgid "Error in censortbl: %s"
+msgstr ""
+
+#: SPSSINC_CENSOR_TABLES.py:329
+msgid "The criterion field was not found in the table: %s"
+msgstr ""
+
