@@ -1,0 +1,27 @@
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Jon Peck (SPSS Inc.) -->
+<Command xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extension-1.0.xsd" Name="SPSSINC CENSOR TABLES" Language="Python">
+	<Subcommand Name="">
+		<Parameter Name="COMMAND" ParameterType="TokenList"/>
+		<Parameter Name="CRITLABEL" ParameterType="QuotedString"/>
+		<Parameter Name="CRITVALUE" ParameterType="Number"/>
+		<Parameter Name="NEIGHBORS" ParameterType="NumberList"/>
+		<Parameter Name="DIRECTION" ParameterType="Keyword">
+			<EnumValue Name="ROW"/>
+			<EnumValue Name="COLUMN"/>
+		</Parameter>
+		<Parameter Name="TESTTYPE" ParameterType="QuotedString"/>
+		<Parameter Name="SUBTYPE" ParameterType="QuotedString"/>
+		<Parameter Name="PROCESS" ParameterType="Keyword">
+			<EnumValue Name="PRECEDING"/>
+			<EnumValue Name="ALL"/>
+		</Parameter>
+	</Subcommand>
+	<Subcommand Name="OPTIONS">
+		<Parameter Name="HIDECRITFIELD" ParameterType="LeadingToken"/>
+		<Parameter Name="APPENDCAPTION" ParameterType="Keyword"/>
+		<Parameter Name="CONDITIONALCAPTION" ParameterType="Keyword"/>
+		<Parameter Name="CAPTION" ParameterType="QuotedString"/>
+		<Parameter Name="SYMBOL" ParameterType="QuotedString"/>
+	</Subcommand>
+	<Subcommand Name="HELP" Occurrence="Optional"/>
+</Command>
