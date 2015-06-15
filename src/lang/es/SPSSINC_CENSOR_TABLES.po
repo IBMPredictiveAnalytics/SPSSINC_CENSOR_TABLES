@@ -1,0 +1,74 @@
+#/***********************************************************************
+# * Licensed Materials - Property of IBM 
+# *
+# * IBM SPSS Products: Statistics Common
+# *
+# * (C) Copyright IBM Corp. 1989, 2014
+# *
+# * US Government Users Restricted Rights - Use, duplication or disclosure
+# * restricted by GSA ADP Schedule Contract with IBM Corp. 
+# ************************************************************************/
+
+# NLS_ENCODING=UTF-8
+# IBMUPYTH
+
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2014-05-21 17:51+China Standard Time\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: ENCODING\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: SPSSINC_CENSOR_TABLES.py:144
+msgid "---"
+msgstr ""
+"---"
+
+#: SPSSINC_CENSOR_TABLES.py:233
+msgid "No table found to process."
+msgstr ""
+"No se ha encontrado ninguna tabla para procesar."
+
+#: SPSSINC_CENSOR_TABLES.py:253
+msgid "A specified item is not a pivot table or does not exist."
+msgstr ""
+"El elemento especificado no es una tabla dinámica o no existe."
+
+#: SPSSINC_CENSOR_TABLES.py:271
+msgid "Invalid comparison type: "
+msgstr ""
+"Tipo de comparación no válido: "
+
+#: SPSSINC_CENSOR_TABLES.py:297
+msgid "direction must be 'row' or 'column'"
+msgstr ""
+"la dirección debe ser 'fila' o 'columna'"
+
+#: SPSSINC_CENSOR_TABLES.py:302
+msgid "Censoring criterion: %s.  Number of values censored: %s"
+msgstr ""
+"Criterio de censura: %s.  Número de valores censurados: %s"
+
+#: SPSSINC_CENSOR_TABLES.py:354
+msgid "Error in censortbl: %s"
+msgstr ""
+"Error en censortbl: %s"
+
+#: SPSSINC_CENSOR_TABLES.py:356
+msgid "The criterion field was not found in the table: %s"
+msgstr ""
+"No se ha encontrado el campo de criterio en la tabla: %s"
+
+
+
