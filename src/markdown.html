@@ -7,133 +7,7 @@
 
 <title>SPSSINC CENSOR TABLES Extension Command</title>
 
-<style type="text/css">
-body, td {
-   font-family: sans-serif;
-   background-color: white;
-   font-size: 12px;
-   margin: 8px;
-}
-
-tt, code, pre {
-   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
-}
-
-h1 { 
-   font-size:2.2em; 
-}
-
-h2 { 
-   font-size:1.8em; 
-}
-
-h3 { 
-   font-size:1.4em; 
-}
-
-h4 { 
-   font-size:1.0em; 
-}
-
-h5 { 
-   font-size:0.9em; 
-}
-
-h6 { 
-   font-size:0.8em; 
-}
-
-a:visited {
-   color: rgb(50%, 0%, 50%);
-}
-
-pre {	
-   margin-top: 0;
-   max-width: 95%;
-   border: 1px solid #ccc;
-   white-space: pre-wrap;
-}
-
-pre code {
-   display: block; padding: 0.5em;
-}
-
-code.r, code.cpp {
-   background-color: #F8F8F8;
-}
-
-table, td, th {
-  border: none;
-}
-
-blockquote {
-   color:#666666;
-   margin:0;
-   padding-left: 1em;
-   border-left: 0.5em #EEE solid;
-}
-
-hr {
-   height: 0px;
-   border-bottom: none;
-   border-top-width: thin;
-   border-top-style: dotted;
-   border-top-color: #999999;
-}
-
-@media print {
-   * { 
-      background: transparent !important; 
-      color: black !important; 
-      filter:none !important; 
-      -ms-filter: none !important; 
-   }
-
-   body { 
-      font-size:12pt; 
-      max-width:100%; 
-   }
-       
-   a, a:visited { 
-      text-decoration: underline; 
-   }
-
-   hr { 
-      visibility: hidden;
-      page-break-before: always;
-   }
-
-   pre, blockquote { 
-      padding-right: 1em; 
-      page-break-inside: avoid; 
-   }
-
-   tr, img { 
-      page-break-inside: avoid; 
-   }
-
-   img { 
-      max-width: 100% !important; 
-   }
-
-   @page :left { 
-      margin: 15mm 20mm 15mm 10mm; 
-   }
-     
-   @page :right { 
-      margin: 15mm 10mm 15mm 20mm; 
-   }
-
-   p, h2, h3 { 
-      orphans: 3; widows: 3; 
-   }
-
-   h2, h3 { 
-      page-break-after: avoid; 
-   }
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href="extsyntax.css" />
 
 
 
@@ -147,12 +21,14 @@ hr {
 <h1>SPSSINC CENSOR TABLES Extension Command</h1>
 
 <p>Censor cells based on the contents of neighboring cells</p>
-
+<div class="syntax">
 <p>SPSS CENSOR TABLES COMMAND = &ldquo;<em>command syntax to execute</em>&rdquo;<br/>
-CRITLABEL=&ldquo;<em>leaf label of criterion row or column</em>&rdquo;<br/>
+CRITLABEL = &ldquo;<em>leaf label of criterion row or column</em>&rdquo;<br/>
+or<br/>
+CRITNUMBER = <em>row or column numbers of the criterion</em><br/><br/>
 CRITVALUE = <em>value to test for censoring</em><br/>
-TESTTYPE= &ldquo;<em>comparison operator to apply</em>&rdquo;<br/>
-DIRECTION= ROW<sup>&#42;&#42;</sup> or COLUMN<br/>
+TESTTYPE = &ldquo;<em>comparison operator to apply</em>&rdquo;<br/>
+DIRECTION = ROW<sup>&#42;&#42;</sup> or COLUMN<br/>
 NEIGHBORS = <em>list of column numbers to censor</em><br/>
 SUBTYPE = &ldquo;<em>OMS table subtype</em>&rdquo;
 PROCESS = <em>PREVIOUS<sup>&#42;&#42;</sup> or ALL</em></p>
@@ -163,12 +39,12 @@ PROCESS = <em>PREVIOUS<sup>&#42;&#42;</sup> or ALL</em></p>
 
 <p><sup>&#42;</sup> Required<br/>
 <sup>&#42;&#42;</sup> Default</p>
-
+</div>
 <p>SPSSINC  CENSOR TABLES /HELP prints this help and does nothing else.</p>
 
 <p>Example: blank out means based on small counts</p>
 
-<pre><code>SPSSINC CENSOR TABLES 
+<pre class="example"><code>SPSSINC CENSOR TABLES 
 COMMAND=&quot;CTABLES /TABLE origin BY accel [MEAN, COUNT]  /SLABELS POSITION=ROW.&quot;
 CRITLABEL=&quot;Count&quot; CRITVALUE=25 NEIGHBORS=-1 DIRECTION=COLUMN, TESTTYPE=&quot;&lt;&quot;
 /OPTIONS SYMBOL=&quot;*&quot;.
@@ -176,7 +52,7 @@ CRITLABEL=&quot;Count&quot; CRITVALUE=25 NEIGHBORS=-1 DIRECTION=COLUMN, TESTTYPE
 
 <p>Example: blank out insignificant correlations from CORRELATIONS.</p>
 
-<pre><code>CORRELATIONS
+<pre class="example"><code>CORRELATIONS
 /VARIABLES=fuel_cap horsepow length lnsales mpg price
 /PRINT=TWOTAIL NOSIG
 /MISSING=PAIRWISE.
@@ -196,6 +72,11 @@ If no command is specified, the most recent matching table is censored.</p>
 
 <p><strong>CRITLABEL</strong> is the innermost text of the row or column containing the statistic
 to be used for censoring.  The default is &ldquo;Count&rdquo;.  The text is case sensitive.</p>
+
+<p><strong>CRITNUMBER</strong> can be used instead of the label.   
+Enter the numbers of all the rows or columns holding the criterion statistic
+counting from zero.  Due to some changes in how label components are handled between Statistics versions, it may happen that 
+for certain types of tables, the censoring statistic is not found by its label. In that case, it is necessary to use the numbers.</p>
 
 <p><strong>CRITVALUE</strong> is a number that is used for the test comparison.  It defaults to 5.</p>
 
