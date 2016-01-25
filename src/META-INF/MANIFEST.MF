@@ -2,7 +2,7 @@ Name: SPSSINC CENSOR TABLES
 Dialog-Specs: SPSSINC_CENSOR_TABLES.spd
 Command-Specs: SPSSINC_CENSOR_TABLES.xml
 Code-Files: SPSSINC_CENSOR_TABLES.py
-Misc-Files: extsyntax.css,markdown.html,IBMdialogicon.png
+Misc-Files: markdown.html
 Summary: Censor cells of a pivot table based on the values of a test s
  tatistic
 Description: Use this command to blank out or otherwise obscure cells 
@@ -11,9 +11,9 @@ Description: Use this command to blank out or otherwise obscure cells
   cell statistics based on small counts or blank out insignificant cor
  relations in a correlation matrix.
 Author: IBM SPSS
-Version: 2.0.0
-Product-Version: 24
-Date: 11/6/2015
+Version: 1.4.0
+Product-Version: 18
+Date: 1/2/2014
 Categories: Extension Commands, Python
 Plugins: Python
 Translation-Catalogues: lang

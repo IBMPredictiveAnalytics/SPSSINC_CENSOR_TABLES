@@ -4,25 +4,20 @@
 # *
 # * IBM SPSS Products: Statistics Common
 # *
-# * (C) Copyright IBM Corp. 1989, 2015
+# * (C) Copyright IBM Corp. 1989, 2014
 # *
 # * US Government Users Restricted Rights - Use, duplication or disclosure
 # * restricted by GSA ADP Schedule Contract with IBM Corp. 
 # ************************************************************************/
-
+from __future__ import with_statement
 
 __author__ = "SPSS, JKP"
-__version__ = "2.0.0"
+__version__ = "1.3.0"
 
 # history
 # 21-dec-2009 enable translation
 # 13-dec-2012 suppress caption if no censoring was done.
 # 29-sep-2014 add PROCESS keyword
-# 04-jan-2015 turn off legacy table compatibility if possible
-# 08-jul-2015 add CRITNUMBER parameter to get around variables in label row numbering
-# 09-jul-2015 fix layer iteration problem
-# 06-nov-2015 upgrade to support Python 3
-
 #try:
     #import wingdbstub
     #if wingdbstub.debugger != None:
@@ -77,20 +72,19 @@ from extension import Template, Syntax, processcmd
 
 def Run(args):
     """Execute the SPSS CENSOR TABLES command"""
-    args = args[list(args.keys())[0]]
+    args = args[args.keys()[0]]
     ###print args   #debug
 
     oobj = Syntax([
         Template("COMMAND", subc="",  ktype="literal", var="cmd", islist=True),
         Template("SUBTYPE", subc="", ktype="str", var="subtype", islist=False),
         Template("CRITLABEL", subc="", ktype="literal", var="critfield"),
-        Template("CRITNUMBER", subc="", ktype="int", var="critfieldnumber", islist=True),
         Template("CRITVALUE", subc="", ktype="float", var="critvalue"),
         Template("NEIGHBORS", subc="", ktype="int", var="neighborlist", islist=True),
         Template("DIRECTION", subc="", ktype="str", var="direction"),
         Template("TESTTYPE", subc="",  ktype="str", var="testtype"),
         Template("PROCESS", subc="", ktype="str", var="process",
-            vallist=["previous", "all", "latest"]),
+            vallist=["previous", "all"]),
         
         Template("HIDECRITFIELD", subc="OPTIONS", ktype="bool", var="hidecrit"),
         Template("APPENDCAPTION", subc="OPTIONS", ktype="bool", var="appendcaption"),
@@ -108,17 +102,32 @@ def Run(args):
             return msg
 
     # A HELP subcommand overrides all else
-    if "HELP" in args:
+    if args.has_key("HELP"):
         #print helptext
         helper()
     else:
         processcmd(oobj, args, censorLatest)
 
+def helper():
+    """open html help in default browser window
+    
+    The location is computed from the current module name"""
+    
+    import webbrowser, os.path
+    
+    path = os.path.splitext(__file__)[0]
+    helpspec = "file://" + path + os.path.sep + \
+         "markdown.html"
+    
+    # webbrowser.open seems not to work well
+    browser = webbrowser.get()
+    if not browser.open_new(helpspec):
+        print("Help file not found:" + helpspec)
 try:    #override
     from extension import helper
 except:
     pass
-def censorLatest(cmd=None, desout=None, critfield='Count', critfieldnumber=[],
+def censorLatest(cmd=None, desout=None, critfield=u'Count', 
         subtype=None, process="previous",
         critvalue=5, symbol=" ",  neighborlist=[1], direction='row', testtype="<", appendcaption=True,
         othercaption=None, hidecrit=False, conditionalcaption=True):
@@ -165,19 +174,13 @@ def censorLatest(cmd=None, desout=None, critfield='Count', critfieldnumber=[],
             #wingdbstub.debugger.StartDebug()
         #import thread
         #wingdbstub.debugger.SetDebugThreads({thread.get_ident(): 1}, default_policy=0)
-        ### for V19 use
-        ###    ###SpssClient._heartBeat(False)
+        ## for V19 use
+        ##    ###SpssClient._heartBeat(False)
     #except:
-        #pass
-    if process == "latest":
-        process = "previous"
+        #pass    
     encoding = locale.getlocale()[1]
-    if not isinstance(critfield, str):
-        critfield = str(critfield, encoding)
-    # a (list of) field numbers overrides the critfield text
-    if critfieldnumber:
-        critfield = None
-    # a critfieldnumber value overrides the field text
+    if not isinstance(critfield, unicode):
+        critfield = unicode(critfield, encoding)
     failed = True
     if subtype:
         subtype = "".join(subtype.lower().split())
@@ -205,25 +208,25 @@ def censorLatest(cmd=None, desout=None, critfield='Count', critfieldnumber=[],
                         break
             itemkt-= 1
         if not tablenumbers:
-            raise ValueError(_("No table found to process."))
+            raise ValueError, _("No table found to process.")
 
         for tablenum in tablenumbers:
-            censorkt = tcensor(items, tablenum, critfield, critfieldnumber, critvalue, symbol, neighborlist, direction, testtype,
+            censorkt = tcensor(items, tablenum, critfield, critvalue, symbol, neighborlist, direction, testtype,
                 appendcaption=appendcaption, othercaption=othercaption, hidecrit=hidecrit, 
                 conditionalcaption=conditionalcaption)
     finally:
         SpssClient.StopClient()
 
 
-def tcensor(objItems, main, critfield='Count', critfieldnumber=None,
-        critvalue=5, symbol="", neighborlist=[1], direction='row', testtype='<',
-        appendcaption=True,othercaption=None, hidecrit=False, conditionalcaption=True):
+def tcensor(objItems, main, critfield='Count', 
+            critvalue=5, symbol="", neighborlist=[1], direction='row', testtype='<',
+            appendcaption=True,othercaption=None, hidecrit=False, conditionalcaption=True):
     """censor the cells of table main in designated Viewer window."""
 
     ###objItems = desviewer.GetOutputItems()
     main = objItems.GetItemAt(main)
     if main.GetType() != SpssClient.OutputItemType.PIVOT:
-        raise ValueError(_("A specified item is not a pivot table or does not exist."))
+        raise ValueError, _("A specified item is not a pivot table or does not exist.")
 
     # create criterion function
     try:
@@ -241,7 +244,7 @@ def tcensor(objItems, main, critfield='Count', critfieldnumber=None,
         elif ttype == 6 or olist == 7:
             olist = [True, False, True]
     except:
-        raise ValueError(_("Invalid comparison type: ") + testtype)
+        raise ValueError, _("Invalid comparison type: ") + testtype
 
     def crittest(value):
         """return whether value meets the criterion test.
@@ -249,12 +252,7 @@ def tcensor(objItems, main, critfield='Count', critfieldnumber=None,
         Tries to handle locale formatted and decorated strings via floatex function"""
 
         try:
-            if abs(floatex(value)) < critvalue:
-                c = -1
-            elif abs(floatex(value)) > critvalue:
-                c = 1
-            else:
-                c = 0
+            c = cmp(abs(floatex(value)), critvalue)
             return olist[c+1]
         except:
             return False
@@ -263,9 +261,8 @@ def tcensor(objItems, main, critfield='Count', critfieldnumber=None,
         PivotTable = main.GetSpecificType()
     except:
         time.sleep(.5)
-        PivotTable = main.GetSpecificType()  # give it anoth
+        PivotTable = main.GetSpecificType()  # give it another chance
     censorkt = 0
-    set23(PivotTable)
     try:
         PivotTable.SetUpdateScreen(False)
         if direction == 'row':
@@ -273,25 +270,23 @@ def tcensor(objItems, main, critfield='Count', critfieldnumber=None,
         elif direction == 'column':
             lblarray = PivotTable.RowLabelArray()			
         else:
-            raise ValueError(_("direction must be 'row' or 'column'"))
-        censorkt = censortbl(lblarray, PivotTable, critfield, critfieldnumber, crittest, symbol, 
+            raise ValueError, _("direction must be 'row' or 'column'")
+        censorkt = censortbl(lblarray, PivotTable, critfield, crittest, symbol, 
                              neighborlist, direction, hidecrit, conditionalcaption)
         if appendcaption and (not conditionalcaption or (conditionalcaption and censorkt > 0)):
             if othercaption is None:
-                othercaption = _("Censoring criterion: %s.  Number of values censored: %s") % (critfield, str(censorkt))
+                othercaption = _("Censoring criterion: %s.  Number of values censored: %s") % (critfield, unicode(censorkt))
             PivotTable.SetCaptionText(PivotTable.GetCaptionText() + "\n" + othercaption)
         PivotTable.Autofit()
     finally:
         PivotTable.SetUpdateScreen(True)
         return censorkt
 
-def censortbl(labels, PivotTable, critfield, critfieldnumber, crittest, symbol, 
-        neighborlist, direction, hidecrit, conditionalcaption):
+def censortbl(labels, PivotTable, critfield, crittest, symbol, neighborlist, direction, hidecrit, conditionalcaption):
     """Censor the table, returning the number of values censored.
 
     labels is the row or column label array where the critfield should be found.
     PivotTable is the table to process.
-    critfield or, if not None, critfieldnumber specifies the test field
     crittest is a test function to be used for the comparison.
     symbol is the symbol used to replace the value.
     neighborlist is the list of neighboring cells in which to do the replacement when the test succeeds
@@ -318,8 +313,7 @@ def censortbl(labels, PivotTable, critfield, critfieldnumber, crittest, symbol,
         for facenumber, face in enumerate(c.layers()):
             for i in range(dimsize):
                 a1, a2 = _sargs(rows, lbllimit, i)
-                if (i in critfieldnumber) or\
-                    labels.GetValueAt(a1, a2)  == critfield:
+                if labels.GetValueAt(a1, a2)  == critfield:
                     foundcritfield = True
                     for other in range(otherdimsize):
                         aa1, aa2 = _sargs(rows, other, i)
@@ -332,28 +326,12 @@ def censortbl(labels, PivotTable, critfield, critfieldnumber, crittest, symbol,
                                     censorkt += 1
                     if hidecrit and facenumber == 0:   # only need to hide once for all the layers
                         hide(labels, rows, i, lbllimit)
-    except AttributeError as e:
+    except AttributeError, e:
         raise SystemError(_("Error in censortbl: %s") % e.args[0])
     if not foundcritfield:
         raise AttributeError(_("The criterion field was not found in the table: %s") % critfield)
 
     return censorkt
-
-def set23(pt):
-    """Set pt incompatible if V23 or later
-    
-    pt is a pivot table"""
-    # this function uses an api that does not exist before
-    # V23 or perhaps a fixpack for V22 to turn off legacy 
-    # table mode so that tables with hidden rows or columns can be
-    # handled correctly
-    
-    try:
-        if pt.IsLegacyTableCompatible():
-            pt.SetLegacyTableCompatible(False)
-    except:
-        pass
-
 
 def hide(array, rows, i, lastdim):
     """Hide the data and labels at i.
@@ -364,13 +342,7 @@ def hide(array, rows, i, lastdim):
     #collblarray = PivotTable.columnlabelarray()
     #lblnumrows = collblarray.numrows
     x, y = _sargs(rows, lastdim, i)
-    # ambiguous column numbering may occur in different Statistics versions
-    # leading to wrong lastdim value
-    # so hiding may not work in some versions
-    try:
-        array.HideLabelsWithDataAt(x, y)
-    except:
-        pass
+    array.HideLabelsWithDataAt(x, y)
 
 def _sargs(row,x,y):
     """ return x, y, if row == True else y,x"""
@@ -403,4 +375,4 @@ class LayerManager(object):
                 for c in range(self.layercats[ld]):
                     yield cc
                     cc = (cc+1) % self.layercats[ld]
-                    self.ptmgr.GetLayerDimension(ld).SetCurrentCategory(cc)
+                    self.ptmgr.LayerDimension(ld).SetCurrentCategory(cc)
