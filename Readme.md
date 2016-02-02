@@ -1,11 +1,13 @@
 # SPSSINC CENSOR TABLES
-## Censor cells of a pivot table based on the values of a test s
- Use this command to blank out or otherwise obscure cells   in the most recent pivot table of a selected type based on the value   of a specified statistic in the table. For example, you can blank out   cell statistics based on small counts or blank out insignificant cor  relations in a correlation matrix.
+## Censor cells of a pivot table based on the values of a test statistic
+ Use this command to blank out or otherwise obscure cells in the most recent pivot table of a selected type based on the value of a specified statistic in the table. For example, you can blank out cell statistics based on small counts or blank out insignificant correlations in a correlation matrix.
 
 ---
 Requirements
 ----
-- IBM SPSS Statistics 18 or later
+- IBM SPSS Statistics 18 or later and the corresponding IBM SPSS Statistics-Integration Plug-in for Python.
+
+For users with IBM SPSS Statistics version 22 or higher, the SPSSINC CENSOR TABLES extension bundle is installed as part of IBM SPSS Statistics-Essentials for Python.
 
 ---
 Installation intructions
