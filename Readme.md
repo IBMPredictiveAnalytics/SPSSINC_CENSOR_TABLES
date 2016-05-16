@@ -119,8 +119,8 @@ License
 ----
 
 - Apache 2.0
-                              
+
 Contributors
 ----
 
-  - IBM SPSS
+ - IBM SPSS
