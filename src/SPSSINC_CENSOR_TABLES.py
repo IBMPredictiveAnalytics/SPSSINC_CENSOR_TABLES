@@ -4,12 +4,12 @@
 # *
 # * IBM SPSS Products: Statistics Common
 # *
-# * (C) Copyright IBM Corp. 1989, 2014
+# * (C) Copyright IBM Corp. 1989, 2020
 # *
 # * US Government Users Restricted Rights - Use, duplication or disclosure
 # * restricted by GSA ADP Schedule Contract with IBM Corp. 
 # ************************************************************************/
-from __future__ import with_statement
+
 
 __author__ = "SPSS, JKP"
 __version__ = "1.3.0"
@@ -36,7 +36,7 @@ import spss
 if not int(spss.GetDefaultPlugInVersion()[4:6]) >= 17:
     # Do not translate: translation function will not be defined at this point
     raise ImportError("This module requires at least SPSS Statistics 17")
-import SpssClient, sys, time, re, locale
+import SpssClient, sys, time, re, locale, operator
 from extension import floatex
 from spssaux import GetSPSSVersion
 spssver = [int(i) for i in GetSPSSVersion().split('.')]
@@ -72,7 +72,7 @@ from extension import Template, Syntax, processcmd
 
 def Run(args):
     """Execute the SPSS CENSOR TABLES command"""
-    args = args[args.keys()[0]]
+    args = args[list(args.keys())[0]]
     ###print args   #debug
 
     oobj = Syntax([
@@ -84,7 +84,7 @@ def Run(args):
         Template("DIRECTION", subc="", ktype="str", var="direction"),
         Template("TESTTYPE", subc="",  ktype="str", var="testtype"),
         Template("PROCESS", subc="", ktype="str", var="process",
-            vallist=["previous", "all"]),
+            vallist=["preceding", "all"]),
         
         Template("HIDECRITFIELD", subc="OPTIONS", ktype="bool", var="hidecrit"),
         Template("APPENDCAPTION", subc="OPTIONS", ktype="bool", var="appendcaption"),
@@ -102,7 +102,7 @@ def Run(args):
             return msg
 
     # A HELP subcommand overrides all else
-    if args.has_key("HELP"):
+    if "HELP" in args:
         #print helptext
         helper()
     else:
@@ -122,13 +122,13 @@ def helper():
     # webbrowser.open seems not to work well
     browser = webbrowser.get()
     if not browser.open_new(helpspec):
-        print("Help file not found:" + helpspec)
+        print(("Help file not found:" + helpspec))
 try:    #override
     from extension import helper
 except:
     pass
-def censorLatest(cmd=None, desout=None, critfield=u'Count', 
-        subtype=None, process="previous",
+def censorLatest(cmd=None, desout=None, critfield='Count', 
+        subtype=None, process="preceding",
         critvalue=5, symbol=" ",  neighborlist=[1], direction='row', testtype="<", appendcaption=True,
         othercaption=None, hidecrit=False, conditionalcaption=True):
     """Run the command(s), cmd and censor specified cells based on criterion and return the number of cells censored.
@@ -179,8 +179,8 @@ def censorLatest(cmd=None, desout=None, critfield=u'Count',
     #except:
         #pass    
     encoding = locale.getlocale()[1]
-    if not isinstance(critfield, unicode):
-        critfield = unicode(critfield, encoding)
+    if not isinstance(critfield, str):
+        critfield = str(critfield, encoding)
     failed = True
     if subtype:
         subtype = "".join(subtype.lower().split())
@@ -204,11 +204,11 @@ def censorLatest(cmd=None, desout=None, critfield=u'Count',
             if item.GetType() == SpssClient.OutputItemType.PIVOT:
                 if subtype is None or subtype == "".join(item.GetSubType().lower().split()):
                     tablenumbers.append(itemkt)
-                    if process == "previous":
+                    if process == "preceding":
                         break
             itemkt-= 1
         if not tablenumbers:
-            raise ValueError, _("No table found to process.")
+            raise ValueError(_("No table found to process."))
 
         for tablenum in tablenumbers:
             censorkt = tcensor(items, tablenum, critfield, critvalue, symbol, neighborlist, direction, testtype,
@@ -226,7 +226,7 @@ def tcensor(objItems, main, critfield='Count',
     ###objItems = desviewer.GetOutputItems()
     main = objItems.GetItemAt(main)
     if main.GetType() != SpssClient.OutputItemType.PIVOT:
-        raise ValueError, _("A specified item is not a pivot table or does not exist.")
+        raise ValueError(_("A specified item is not a pivot table or does not exist."))
 
     # create criterion function
     try:
@@ -244,7 +244,7 @@ def tcensor(objItems, main, critfield='Count',
         elif ttype == 6 or olist == 7:
             olist = [True, False, True]
     except:
-        raise ValueError, _("Invalid comparison type: ") + testtype
+        raise ValueError(_("Invalid comparison type: ") + testtype)
 
     def crittest(value):
         """return whether value meets the criterion test.
@@ -252,7 +252,7 @@ def tcensor(objItems, main, critfield='Count',
         Tries to handle locale formatted and decorated strings via floatex function"""
 
         try:
-            c = cmp(abs(floatex(value)), critvalue)
+            c = operator.eq(abs(floatex(value)), critvalue)
             return olist[c+1]
         except:
             return False
@@ -270,12 +270,12 @@ def tcensor(objItems, main, critfield='Count',
         elif direction == 'column':
             lblarray = PivotTable.RowLabelArray()			
         else:
-            raise ValueError, _("direction must be 'row' or 'column'")
+            raise ValueError(_("direction must be 'row' or 'column'"))
         censorkt = censortbl(lblarray, PivotTable, critfield, crittest, symbol, 
                              neighborlist, direction, hidecrit, conditionalcaption)
         if appendcaption and (not conditionalcaption or (conditionalcaption and censorkt > 0)):
             if othercaption is None:
-                othercaption = _("Censoring criterion: %s.  Number of values censored: %s") % (critfield, unicode(censorkt))
+                othercaption = _("Censoring criterion: %s.  Number of values censored: %s") % (critfield, str(censorkt))
             PivotTable.SetCaptionText(PivotTable.GetCaptionText() + "\n" + othercaption)
         PivotTable.Autofit()
     finally:
@@ -326,7 +326,7 @@ def censortbl(labels, PivotTable, critfield, crittest, symbol, neighborlist, dir
                                     censorkt += 1
                     if hidecrit and facenumber == 0:   # only need to hide once for all the layers
                         hide(labels, rows, i, lbllimit)
-    except AttributeError, e:
+    except AttributeError as e:
         raise SystemError(_("Error in censortbl: %s") % e.args[0])
     if not foundcritfield:
         raise AttributeError(_("The criterion field was not found in the table: %s") % critfield)
