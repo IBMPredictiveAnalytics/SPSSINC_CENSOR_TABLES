@@ -4,7 +4,7 @@
 # *
 # * IBM SPSS Products: Statistics Common
 # *
-# * (C) Copyright IBM Corp. 1989, 2020
+# * (C) Copyright IBM Corp. 1989, 2021
 # *
 # * US Government Users Restricted Rights - Use, duplication or disclosure
 # * restricted by GSA ADP Schedule Contract with IBM Corp. 
@@ -12,25 +12,13 @@
 
 
 __author__ = "SPSS, JKP"
-__version__ = "1.3.0"
+__version__ = "1.3.1"
 
 # history
 # 21-dec-2009 enable translation
 # 13-dec-2012 suppress caption if no censoring was done.
 # 29-sep-2014 add PROCESS keyword
-#try:
-    #import wingdbstub
-    #if wingdbstub.debugger != None:
-        #import time
-        #wingdbstub.debugger.StopDebug()
-        #time.sleep(2)
-        #wingdbstub.debugger.StartDebug()
-    #import thread
-    #wingdbstub.debugger.SetDebugThreads({thread.get_ident(): 1}, default_policy=0)
-    ## for V19 use
-    ##    ###SpssClient._heartBeat(False)
-#except:
-    #pass    
+# 17-feb-2021 fix Python 3 conversion error
 
 import spss
 if not int(spss.GetDefaultPlugInVersion()[4:6]) >= 17:
@@ -251,8 +239,17 @@ def tcensor(objItems, main, critfield='Count',
 
         Tries to handle locale formatted and decorated strings via floatex function"""
 
+        #try:
+            #c = operator.eq(abs(floatex(value)), critvalue)
+            #return olist[c+1]
+        # put back previous code in place of operator.eq
         try:
-            c = operator.eq(abs(floatex(value)), critvalue)
+            if abs(floatex(value)) < critvalue:
+                c = -1
+            elif abs(floatex(value)) > critvalue:
+                c = 1
+            else:
+                c = 0
             return olist[c+1]
         except:
             return False
