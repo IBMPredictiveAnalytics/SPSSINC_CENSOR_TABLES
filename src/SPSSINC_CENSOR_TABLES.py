@@ -12,13 +12,14 @@
 
 
 __author__ = "SPSS, JKP"
-__version__ = "1.3.1"
+__version__ = "1.3.2"
 
 # history
 # 21-dec-2009 enable translation
 # 13-dec-2012 suppress caption if no censoring was done.
 # 29-sep-2014 add PROCESS keyword
 # 17-feb-2021 fix Python 3 conversion error
+# 18-mar-2021 change crittest to use GetUnformattedValue
 
 import spss
 if not int(spss.GetDefaultPlugInVersion()[4:6]) >= 17:
@@ -152,20 +153,14 @@ def censorLatest(cmd=None, desout=None, critfield='Count',
 
     """
     # debugging
-    # makes debug apply only to the current thread
+            # makes debug apply only to the current thread
     #try:
         #import wingdbstub
-        #if wingdbstub.debugger != None:
-            #import time
-            #wingdbstub.debugger.StopDebug()
-            #time.sleep(2)
-            #wingdbstub.debugger.StartDebug()
-        #import thread
-        #wingdbstub.debugger.SetDebugThreads({thread.get_ident(): 1}, default_policy=0)
-        ## for V19 use
-        ##    ###SpssClient._heartBeat(False)
+        #import threading
+        #wingdbstub.Ensure()
+        #wingdbstub.debugger.SetDebugThreads({threading.get_ident(): 1})
     #except:
-        #pass    
+        #pass   
     encoding = locale.getlocale()[1]
     if not isinstance(critfield, str):
         critfield = str(critfield, encoding)
@@ -314,7 +309,7 @@ def censortbl(labels, PivotTable, critfield, crittest, symbol, neighborlist, dir
                     foundcritfield = True
                     for other in range(otherdimsize):
                         aa1, aa2 = _sargs(rows, other, i)
-                        if crittest(datacells.GetValueAt(aa1, aa2)):
+                        if crittest(datacells.GetUnformattedValueAt(aa1, aa2)):
                             for offset in neighborlist:
                                 if 0 <= i+ offset < dimsize:
                                     aaa1, aaa2 = _sargs(rows, other, i + offset)
