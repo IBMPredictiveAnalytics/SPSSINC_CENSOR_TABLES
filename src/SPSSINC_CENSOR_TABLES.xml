@@ -16,6 +16,7 @@
 	<Subcommand Name="">
 		<Parameter Name="COMMAND" ParameterType="TokenList"/>
 		<Parameter Name="CRITLABEL" ParameterType="QuotedString"/>
+		<Parameter Name="LABELOFFSET" ParameterType="Integer"/>
 		<Parameter Name="CRITVALUE" ParameterType="Number"/>
 		<Parameter Name="NEIGHBORS" ParameterType="NumberList"/>
 		<Parameter Name="DIRECTION" ParameterType="Keyword">

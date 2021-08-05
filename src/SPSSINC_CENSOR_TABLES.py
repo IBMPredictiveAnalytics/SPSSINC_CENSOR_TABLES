@@ -20,6 +20,7 @@ __version__ = "1.3.2"
 # 29-sep-2014 add PROCESS keyword
 # 17-feb-2021 fix Python 3 conversion error
 # 18-mar-2021 change crittest to use GetUnformattedValue
+# 22-jul-2021 add LABELOFFSET parameter
 
 import spss
 if not int(spss.GetDefaultPlugInVersion()[4:6]) >= 17:
@@ -68,6 +69,8 @@ def Run(args):
         Template("COMMAND", subc="",  ktype="literal", var="cmd", islist=True),
         Template("SUBTYPE", subc="", ktype="str", var="subtype", islist=False),
         Template("CRITLABEL", subc="", ktype="literal", var="critfield"),
+        Template("LABELOFFSET", subc="", ktype="int", var="labeloffset",
+            vallist=(0,)),
         Template("CRITVALUE", subc="", ktype="float", var="critvalue"),
         Template("NEIGHBORS", subc="", ktype="int", var="neighborlist", islist=True),
         Template("DIRECTION", subc="", ktype="str", var="direction"),
@@ -119,7 +122,7 @@ except:
 def censorLatest(cmd=None, desout=None, critfield='Count', 
         subtype=None, process="preceding",
         critvalue=5, symbol=" ",  neighborlist=[1], direction='row', testtype="<", appendcaption=True,
-        othercaption=None, hidecrit=False, conditionalcaption=True):
+        othercaption=None, hidecrit=False, conditionalcaption=True, labeloffset=0):
     """Run the command(s), cmd and censor specified cells based on criterion and return the number of cells censored.
 
     If cmd is empty or not supplied, it is not run, and the requisite tables should already exist.
@@ -153,14 +156,14 @@ def censorLatest(cmd=None, desout=None, critfield='Count',
 
     """
     # debugging
-            # makes debug apply only to the current thread
-    #try:
-        #import wingdbstub
-        #import threading
-        #wingdbstub.Ensure()
-        #wingdbstub.debugger.SetDebugThreads({threading.get_ident(): 1})
-    #except:
-        #pass   
+# debugging
+    try:
+        import wingdbstub
+        import threading
+        wingdbstub.Ensure()
+        wingdbstub.debugger.SetDebugThreads({threading.get_ident(): 1})
+    except:
+        pass  
     encoding = locale.getlocale()[1]
     if not isinstance(critfield, str):
         critfield = str(critfield, encoding)
@@ -196,14 +199,14 @@ def censorLatest(cmd=None, desout=None, critfield='Count',
         for tablenum in tablenumbers:
             censorkt = tcensor(items, tablenum, critfield, critvalue, symbol, neighborlist, direction, testtype,
                 appendcaption=appendcaption, othercaption=othercaption, hidecrit=hidecrit, 
-                conditionalcaption=conditionalcaption)
+                conditionalcaption=conditionalcaption, labeloffset=labeloffset)
     finally:
         SpssClient.StopClient()
 
 
 def tcensor(objItems, main, critfield='Count', 
             critvalue=5, symbol="", neighborlist=[1], direction='row', testtype='<',
-            appendcaption=True,othercaption=None, hidecrit=False, conditionalcaption=True):
+            appendcaption=True,othercaption=None, hidecrit=False, conditionalcaption=True, labeloffset=0):
     """censor the cells of table main in designated Viewer window."""
 
     ###objItems = desviewer.GetOutputItems()
@@ -264,7 +267,7 @@ def tcensor(objItems, main, critfield='Count',
         else:
             raise ValueError(_("direction must be 'row' or 'column'"))
         censorkt = censortbl(lblarray, PivotTable, critfield, crittest, symbol, 
-                             neighborlist, direction, hidecrit, conditionalcaption)
+            neighborlist, direction, hidecrit, conditionalcaption, labeloffset)
         if appendcaption and (not conditionalcaption or (conditionalcaption and censorkt > 0)):
             if othercaption is None:
                 othercaption = _("Censoring criterion: %s.  Number of values censored: %s") % (critfield, str(censorkt))
@@ -274,7 +277,8 @@ def tcensor(objItems, main, critfield='Count',
         PivotTable.SetUpdateScreen(True)
         return censorkt
 
-def censortbl(labels, PivotTable, critfield, crittest, symbol, neighborlist, direction, hidecrit, conditionalcaption):
+def censortbl(labels, PivotTable, critfield, crittest, symbol, neighborlist, direction, hidecrit, 
+        conditionalcaption, labeloffset=0):
     """Censor the table, returning the number of values censored.
 
     labels is the row or column label array where the critfield should be found.
@@ -299,6 +303,9 @@ def censortbl(labels, PivotTable, critfield, crittest, symbol, neighborlist, dir
             dimsize = datacells.GetNumRows()
             otherdimsize = datacells.GetNumColumns()
             lbllimit = labels.GetNumColumns() - 1
+        lbllimit = lbllimit - labeloffset
+        if lbllimit < 0:
+            raise ValueError(_("The specified label offset is larger than the dimension of the labels"))
         censorkt = 0
         foundcritfield = False
         c = LayerManager(PivotTable)
