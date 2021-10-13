@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Tabla de censores</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Tabla de censores</h1>Utilice este diálogo para vaciar u ocultar, de cualquier otro modo, determinadas casillas en una tabla dinámica basándose en el valor de un estadístico especificado en la tabla. Por ejemplo, puede vaciar el estadístico de la media si el recuento de casillas es menor que 5.
+
+  <p>En el campo <i>Etiqueta de estadístico de censura</i>, especifique el texto en el nivel más interno de la etiqueta para la fila o la columna que contiene el estadístico de censura. Debe coincidir con el caso del texto e incluir cualquier espacio en blanco de la etiqueta.</p>
+
+  <p>Seleccione el tipo de comparación que se va a realizar desde la lista desplegable. La prueba que se lleva a cabo es<br>
+  abs(valor de casilla) testtype critvalue.<br>
+  Por ejemplo, abs(recuento de casillas) &lt; 5.</p>
+
+  <p>Liste las casillas que se vayan a censurar en el campo <i>Filas o columnas vecinas para censurar</i>. Las casillas que se van a censurar se indican mediante su posición relativa al estadístico de censura.
+  Los números negativos están a la izquierda o por encima de la casilla de censura y los números positivos están a la derecha o por debajo de dicha casilla. Incluye 0 en la lista para censurar el propio estadístico de censura.</p>
+
+  <p>Por ejemplo, si una tabla tiene un recuento, media y desviación estándar de columnas, puede censurar la media y la desviación estándar basadas en el recuento especificando<br>
+  1 2<br>
+  en la lista.</p>
+
+  <p>Puede especificar el subtipo OMS de la tabla para procesar en el campo <i>Subtipo OMS de tabla</i>. Puede encontrar el subtipo pulsando con el botón derecho del ratón en el compendio de una instancia o desde los identificadores Utilidades/OMS. No importan los espacios en blanco, ni las mayúsculas y minúsculas.</p>
+
+  <p>De manera predeterminada, la censura se aplicará a la última tabla dinámica del Visor. Puede especificar Todo para censurar todas las tablas.
+  Si se especifica un subtipo de tabla OMS, la censura se limita a las tablas de ese tipo.  
+</p>
+  
+  <p>Marque el recuadro <i>Ocultar fila o columna del criterio</i> para ocultar toda la fila o columna que contiene el estadístico de censura.</p>
+
+  <p>De forma predeterminada, el texto del título se añade mostrando el número de casillas censuradas y el nombre del estadístico de censura. Desmarque <i>Añadir título con información de censura</i> para evitar esto.</p>
+
+  <p>Puede controlar si el título aparece siempre o sólo si alguna casilla está realmente censurada eligiendo el botón de selección apropiado.</p>
+
+  <p>Marque <i>Texto de título personalizado</i> y escribir el texto debajo para que tener el texto del título personalizado.</p>
+
+  <p>De forma predeterminada, las casillas censuradas están en blanco. Escriba una cadena de uno o más caracteres en <i>Símbolo para casillas censuradas</i> para especificar un texto de sustitución diferente.</p>
+
+  <h2>Requisitos previos</h2>Es necesario el plug-in de programabilidad de Python. Se puede instalar desde el CD de instalación de SPSS Statistics o se puede descargar desde SPSS Developer Central (www.spss.com/devcentral).
+
+  <h2>Características adicionales disponibles a través de la sintaxis</h2>La ejecución de <b>SPSSINC CENSOR TABLES /HELP</b> genera un diagrama completo de la sintaxis. En la sintaxis puede incluir el comando que se va a ejecutar para generar la tabla dentro del comando SPSSINC CENSOR TABLES. Esto proporciona un mejor control, si falla el comando que genera la tabla.
+    <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

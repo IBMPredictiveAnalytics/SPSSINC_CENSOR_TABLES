@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Tabela do Censor</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Tabela do Censor</h1>Use esse diálogo para clarear ou ofuscar   determinadas células em uma tabela dinâmica com base   no valor de uma estatística especificada na tabela. Por exemplo, você poderia clarear a estatística de média se a contagem de célula for menor que 5.
+
+  <p>No campo <i>Rótulo da Estatística de Censo</i>, insira o   texto do nível mais interno do rótulo para a linha ou coluna   que contém a estatística de censo. Você deve corresponder o caso do texto e incluir qualquer espaço em branco no rótulo.</p>
+
+  <p>Selecione o tipo de comparação a ser feito na lista suspensa. O teste executado é<br>
+  abs(cell value) testtype critvalue.<br>
+  Por exemplo, abs(contagem de célula) &lt; 5.</p>
+
+  <p>Liste as células a serem censoriadas no campo<i>Linhas ou colunas vizinhas   para censor</i>. As células a serem censoriadas são indicadas por sua posição relativa para a estatística de censo.
+  Números negativos são para a esquerda ou acima da célula de censo e números positivos são para a direita ou abaixo dessa célula. Inclua 0 na lista para o fazer o censor da própria estatística de censo.</p>
+
+  <p>Por exemplo, se uma tabela possui contagem de colunas, média e desvio padrão, você poderia fazer censor da média e do desvio padrão com base na contagem inserindo<br>
+  1 2<br>
+  na lista.</p>
+
+  <p>Você pode especificar o subtipo OMS da tabela para processar no campo   <i>Subtipo OMS de Tabela</i>. Você pode localizar o subtipo clicando com o botão direito do mouse na estrutura de tópicos em uma instância ou a partir de identificadores Utilities/OMS. Maiúsculas e minúsculas e espaço em branco não importam.</p>
+
+  <p>Por padrão, a censura será aplicada na última tabela dinâmica no    Visualizador. É possível especificar Tudo para censurar todas as tabelas.
+  Se um subtipo de tabela OMS for especificado, a censura será limitada à tabelas desse tipo.  
+</p>
+  
+  <p>Marque a caixa <i>Ocultar linha ou coluna de critério</i> para ocultar a linha ou coluna toda contendo a estatística de censo.</p>
+
+  <p>Por padrão, texto de legenda é incluído mostrando o número de células censuradas e o nome da estatística de censo. Desmarque <i>Incluir   legenda com informações de censo</i> para evitar isso.</p>
+
+  <p>Você pode controlar se a legenda sempre aparece ou apenas se alguma célula for realmente censurada escolhendo o botão de opções apropriado.</p>
+
+  <p>Marque <i>Texto de legenda customizado</i> e insira o texto abaixo para   obter um texto de legenda customizado.</p>
+
+  <p>Por padrão, células censorizadas são deixadas em branco. Insira uma sequência de um ou mais caracteres em <i>Símbolo de Células Censuradas</i> para especificar um texto de reposição diferente.</p>
+
+  <h2>Pré-Requisitos</h2>O Python Programmability Plug-in é   necessário. Ele pode ser instalado a partir do CD de instalação do SPSS Statistics ou transferido por download a partir da SPSS Developer Central (www.spss.com/devcentral).
+
+  <h2>Recursos Adicionais Disponível por meio de Sintaxe</h2>A execução de   <b>SPSSINC CENSOR TABLES /HELP</b> produz um gráfico de sintaxe   completo. Na sintaxe, você pode incluir o comando a ser executado para produzir a tabela dentro do comando SPSSINC CENSOR TABLES. Isso fornece um melhor controle se o comando de geração de tabela falhar.
+    <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Table de censure</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Table de censure</h1>Cette boîte de dialogue permet d'ignorer ou de masquer certaines cellules d'un tableau croisé dynamique en fonction de la valeur d'une statistique particulière dans la table. Par exemple, vous pouvez ignorer la statistique moyenne si le nombre de cellules est
+inférieur à 5.
+
+  <p>Dans le champ <i>Libellé de statistique de censure</i>, entrez le texte du niveau le plus interne du libellé pour la ligne ou la colonne contenant la statistique de censure. Vous devez
+respecter la casse du texte et inclure tout espace requis dans le libellé.</p>
+
+  <p>Sélectionnez le type de comparaison à effectuer dans la liste déroulante. Le test effectué
+est<br>
+  abs(valeur cellule) testtype critvalue.<br>
+  Par exemple, abs(nombre cellules) &lt; 5.</p>
+
+  <p>Affichez les cellules à censurer dans le champ <i>Lignes ou colonnes voisines à censurer</i>. Les cellules à censurer sont indiquées par leur position relative à
+la statistique de censure.
+  Les nombres négatifs se trouvent à gauche ou au-dessus de la cellule de censure, et les
+nombres positifs se trouvent à droite ou en-dessous de cette cellule. Entrez 0 dans la liste pour censurer la statistique de censure elle-même.</p>
+
+  <p>Par exemple, si un tableau comporte un nombre de colonnes, un écart moyen et standard, vous
+pouvez censurer cet écart en fonction du nombre de colonnes, en entrant<br>
+  1 2<br>
+  dans la liste.</p>
+
+  <p>Vous pouvez indiquer le sous-type OMS du tableau à traiter dans le champ <i>Sous-type OMS de tableau</i>. Vous pouvez rechercher le sous-type en cliquant avec le bouton
+droit de la souris dans la légende d'une instance ou à partir des identificateurs
+d'utilitaires/OMS. Il n'y a pas de conditions d'emploi des majuscules, des minuscules et des espaces.</p>
+
+  <p>Par défaut, la censure est appliquée au dernier tableau croisé dynamique du visualiseur. Vous pouvez définir la valeur Toutes pour censurer l'ensemble des tables.
+  Si un sous-type de tableau OMS est défini, la censure est appliquée aux tables de ce type uniquement.  
+</p>
+  
+  <p>Sélectionnez la case à cocher <i>Masquer la ligne ou la colonne de légende</i> pour masquer
+l'intégralité de la ligne ou de la colonne contenant la statistique de censure.</p>
+
+  <p>Par défaut, une légende est ajoutée indiquant le nombre de cellules censurées et le nom de la
+statistique de censure. Pour éviter cela désélectionnez la case à cocher <i>Ajouter la légende avec les options de censure
+</i>.</p>
+
+  <p>A l'aide du bouton radio approprié vous pouvez choisir d'afficher la légende en permanence
+ou uniquement si des cellules sont réellement censurées.</p>
+
+  <p>Sélectionnez la case à cocher <i>Texte de légende personnalisé</i> et dessous, entrez le
+texte de légende personnalisé.</p>
+
+  <p>Par défaut, les cellules censurées sont vidées de leur contenu. Entrez une chaîne d'un ou de plusieurs caractères dans <i>Symbole pour les cellules censurées</i> afin d'indiquer un texte de
+remplacement différent.</p>
+
+  <h2>Prérequis</h2>Le plug-in de programmabilité Python est requis. Il peut être installé à partir
+du CD d'installation de SPSS Statistics ou téléchargé à partir de SPSS Developer Central (www.spss.com/devcentral).
+
+  <h2>Fonctions supplémentaires disponibles via la syntaxe</h2>L'exécution de <b>SPSSINC CENSOR TABLES
+/HELP</b> génère un diagramme de syntaxe complet. Dans la syntaxe vous pouvez inclure la commande à
+exécuter pour générer le tableau dans la commande SPSSINC CENSOR TABLES. Ceci offre un meilleur
+contrôle en cas d'échec de la commande de génération de tableau.
+    <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

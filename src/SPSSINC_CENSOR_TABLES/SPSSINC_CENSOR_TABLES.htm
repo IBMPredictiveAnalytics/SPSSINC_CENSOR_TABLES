@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Censor Table</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Censor Table</h1>Use this dialog to blank out or otherwise
+  obscure certain cells in a pivot table based on the
+  value of a specified statistic in the table. For example, you
+  could blank out the mean statistic if the cell count is less than
+  5.
+
+  <p>In the field <i>Label of Censoring Statistic</i>, enter the
+  text of the innermost level of the label for the row or column
+  containing the censoring statistic. You must match the case of
+  the text and include any white space in the label.</p>
+
+  <p>Select the type of comparison to be done from the dropdown
+  list. The test carried out is<br>
+  abs(cell value) testtype critvalue.<br>
+  For example, abs(cell count) &lt; 5.</p>
+
+  <p>List the cells to be censored in the <i>Neighboring rows or
+  columns to censor</i> field. The cells to be censored are
+  indicated by their position relative to the censoring statistic.
+  Negative numbers are to the left or above the censoring cell, and
+  positive numbers are to the right or below that cell. Include 0
+  in the list to censor the censoring statistic itself.</p>
+
+  <p>For example, if a table has columns count, mean, and standard
+  deviation, you could censor the mean and standard deviation based
+  on the count by entering<br>
+  1 2<br>
+  in the list.</p>
+
+  <p>You can specify the OMS subtype of the table to process in the
+  <i>Table OMS Subtype</i> field. You can find the subtype by right
+  clicking in the outline on an instance or from Utilties/OMS
+  identifiers. Case and white space do not matter.</p>
+
+  <p>By default, the censoring will be applied to the last pivot table
+   in the Viewer. You can specify All to censor all tables.
+  If an OMS table subtype is specified, the censoring is limited to
+  tables of that type.  
+</p>
+  
+  <p>Check the box <i>Hide criterion row or column</i> to hide the
+  entire row or column containing the censoring statistic.</p>
+
+  <p>By default, caption text is added showing the number of cells
+  censored and the name of the censoring statistic. Uncheck <i>Add
+  caption with censoring information</i> to prevent this.</p>
+
+  <p>You can control whether the caption always appears or only if
+  any cells are actually censored by choosing the appropriate radio
+  button.</p>
+
+  <p>Check <i>Custom caption text</i> and enter text below to have
+  custom caption text.</p>
+
+  <p>By default, censored cells are made blank. Enter a string of
+  one or more characters in <i>Symbol for Censored Cells</i> to
+  specify different replacement text.</p>
+
+  <h2>Prerequisites</h2>The Python Programmability plug-in is
+  required. It can be installed from the SPSS Statistics
+  installation cd or downloaded from SPSS Developer Central
+  (www.spss.com/devcentral).
+
+  <h2>Additional Features Available Through Syntax</h2>Executing
+  <b>SPSSINC CENSOR TABLES /HELP</b> produces a complete syntax
+  chart. In syntax you can include the command to be executed to
+  produce the table within the SPSSINC CENSOR TABLES command. This
+  give better control if the table-generating command fails.
+    <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

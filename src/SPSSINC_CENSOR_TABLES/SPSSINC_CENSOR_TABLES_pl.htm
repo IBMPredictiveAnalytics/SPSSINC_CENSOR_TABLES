@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Ocenzuruj tabelę</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Ocenzuruj tabelę</h1>Użyj tego okna dialogowego, aby wyczyścić lub w innym przypadku nadpisać niektóre komórki w tabeli przestawnej na podstawie wartości określonej statystyki w tabeli. Na przykład: można wyczyścić statystykę
+  średniej, jeśli liczebność komórek jest mniejsza niż 5.
+
+  <p>Do pola <i>Etykieta statystyki cenzurowania</i> wprowadź tekst
+  najbardziej wewnętrznego poziomu etykiety dla wiersza lub kolumny
+  zawierającej statystykę cenzurowania. Wymagane jest dopasowanie
+  wielkości liter tekstu i uwzględnienie wszelkich znaków białych w etykiecie.</p>
+
+  <p>Z listy rozwijanej wybierz typ porównania do zrealizowania. Wykonany test:<br>
+  abs(cell value) typ_testu wartość.<br>
+  Na przykład: abs(cell count) &lt; 5.</p>
+
+  <p>W polu <i>Sąsiednie wiersze lub kolumny do cenzurowania</i>
+  utwórz listę komórek do ocenzurowania. Komórki do ocenzurowania są
+  wskazywane na podstawie ich pozycji względem statystyki cenzurowania.
+  Liczby ujemne znajdują się po lewej stronie cenzurowanej komórki lub
+  nad nią, a liczby dodatnie znajdują się po prawej stronie komórki
+  lub pod nią. Jeśli zamierzasz ocenzurować samą
+  statystykę cenzurowania, dołącz do listy wartość 0.</p>
+
+  <p>Przykład: jeśli tabela zawiera kolumny: liczebność, średnia i
+  odchylenie standardowe, wówczas można ocenzurować średnią i
+  odchylenie standardowe na podstawie liczebności, wprowadzając<br>
+  1 2<br>
+  do listy.</p>
+
+  <p>W polu <i>Podtyp tabeli OMS</i> można określić podtyp OMS
+  tabeli do przetwarzania. Podtyp można znaleźć, klikając prawym przyciskiem myszy w strukturze raportu na instancji tabeli i wybierając opcję OMS Kopiuj typ tabeli lub wybrać z menu pozycje Narzędzia>Identyfikatory OMS. Wielkości znaków i znaki białe
+nie mają znaczenia.</p>
+
+  <p>Domyślnie cenzurowanie obejmie ostatnią tabelę przestawną w przeglądarce. Można wybrać wartość Wszystko, aby cenzurować wszystkie tabele.
+  Jeśli podano podtyp tabeli OMS, cenzurowanie ogranicza się do tabel tego typu.  
+</p>
+  
+  <p>Zaznacz pole wyboru <i>Utwórz wiersz lub kolumnę
+  kryterium</i>, aby ukryć cały wiersz lub kolumnę zawierającą
+  statystykę cenzurowania.</p>
+
+  <p>Domyślnie dodawany jest tekst nagłówka przedstawiający liczbę
+  komórek ocenzurowanych oraz nazwę statystyki cenzurowania. Aby
+  uniemożliwić taki sposób działania, usuń zaznaczenie pola wyboru
+  <i>Dodaj nagłówek z informacjami dot. cenzurowania</i>.</p>
+
+  <p>Zaznaczając odpowiedni przełącznik można określić, czy
+  nagłówek będzie widoczny zawsze, czy tylko wówczas, gdy komórki
+  zostały rzeczywiście ocenzurowane.</p>
+
+  <p>Aby dodać niestandardowy tekst nagłówka, zaznacz opcję
+  <i>Niestandardowy tekst nagłówka</i> i wprowadź tekst poniżej.</p>
+
+  <p>Domyślnie komórki ocenzurowane są ustawiane jako puste. Aby
+  określić inny tekst zastępczy, wprowadź do pola <i>Symbol dla
+  ocenzurowanych komórek</i> łańcuch zawierający jeden lub większą
+  liczbę znaków.</p>
+
+  <h2>Wymagania wstępne</h2>Wymagana jest wtyczka Python
+  Programmability. Można ją zainstalować z instalacyjnego dysku
+  SPSS Statistics lub pobrać z serwisu SPSS Community, pod adresem www.ibm.com/developerworks/spssdevcentral/.
+
+  <h2>Dodatkowe właściwości dostępne za pośrednictwem komend</h2>Uruchomienie komendy <b>SPSSINC CENSOR TABLES /HELP</b> spowoduje
+  wygenerowanie kompletnego diagramu składni komendy. W składni można
+  uwzględnić komendę do wykonania, która spowoduje wygenerowanie
+  tabeli - w ramach komendy SPSSINC CENSOR TABLES. Taki sposób
+  definiowania komend zapewnia lepszą kontrolę, jeśli wykonanie
+  komendy generującej tabelę nie powiedzie się.
+    <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>
