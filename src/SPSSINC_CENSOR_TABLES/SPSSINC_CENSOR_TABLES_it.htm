@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Censura tabella</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Censura tabella</h1>Utilizzare questa finestra di dialogo per escludere
+  o oscurare in altro modo delle specifiche celle in una tabella pivot
+  in base al valore di una specifica statistica nella tabella. Ad esempio, è possibile escludere la statistica della media se il conteggio delle celle è
+inferiore a 5.
+
+  <p>Nel campo <i>Etichetta statistica di censura</i>, immettere il testo
+  del livello più interno dell'etichetta per la riga o la colonna che
+  contiene la statistica di censura. È necessario far corrispondere le
+  maiuscole/minuscole del testo e includere eventuali spazi nell'etichetta.</p>
+
+  <p>Selezionare il tipo di confronto da eseguire dall'elenco a discesa. Il test eseguito è<br>
+  abs(valore cella) testtype critvalue.<br>
+  Ad esempio, abs(conteggio celle) &lt; 5.</p>
+
+  <p>Elencare le celle da censurare nel campo <i>Righe o colonne
+  vicine da censurare</i>. Le celle da censurare sono indicate dalla
+  loro posizione relativa alla statistica di censura.
+  I numeri negativi sono a sinistra o sopra la cella di censura e
+  i numeri positivi sono a destra o sotto tale cella. Includere 0
+ nell'elenco per censurare la statistica di censura stessa.</p>
+
+  <p>Ad esempio, se una tabella ha un conteggio celle, una media e una
+  deviazione standard, è possibile censurare la media e la deviazione
+  standard in base al conteggio immettendo<br>
+  1 2<br>
+ nell'elenco.</p>
+
+  <p>È possibile specificare il sottotipo SGO della tabella da elaborare nel campo
+  <i>Sottotipo SGO tabella</i>. È possibile trovare il sottotipo facendo clic
+  con il tasto destro del mouse nello schema su un'istanza oppure dagli
+  identificativi SGO/Programmi di utilità. Maiuscole/minuscole e spazi non contano.</p>
+
+  <p>Per impostazione predefinita, la censura sarà applicata all'ultima tabella pivot nel Visualizzatore. È possibile specificare Tutto, per censurare tutte le tabelle.
+  Se è specificato un sottotipo tabella OMS, la censura è limitata  alle tabelle di tale tipo.  
+</p>
+  
+  <p>Selezionare la casella <i>Nascondi riga o colonna di criterio</i> per nascondere
+  l'intera riga o colonna che contiene la statistica di censura.</p>
+
+  <p>Per impostazione predefinita, viene aggiunto il testo didascalia che
+  mostra il numero di celle censurate e il nome della statistica di
+  censura. Deselezionare <i>Aggiungi didascalia con informazioni di censura</i> per evitarlo.</p>
+
+  <p>È possibile controllare se la didascalia viene visualizzata sempre o solo se
+  le celle vengono effettivamente censurate selezionando il pulsante
+  di scelta appropriato.</p>
+
+  <p>Selezionare <i>Testo didascalia personalizzato</i> e immettere il testo di seguito per
+  avere il testo personalizzato della didascalia.</p>
+
+  <p>Per impostazione predefinita, le celle censurate sono rese vuote. Immettere
+  una stringa di uno o più caratteri in <i>Simbolo per le celle censurate</i> per
+  specificare un testo di sostituzione differente.</p>
+
+  <h2>Prerequisiti</h2>È richiesto il plug-in  Python Programmability. Può essere installato dal CD di installazione
+di SPSS Statistics o scaricato da
+SPSS Developer Central
+  (www.spss.com/devcentral).
+
+  <h2>Funzioni aggiuntive disponibili mediante la sintassi</h2>Eseguendo
+  <b>SPSSINC CENSOR TABLES /HELP</b>, viene prodotto un grafico sintattico completo. Nella sintassi è possibile includere il comando da eseguire per
+  produrre la tabella nel comando SPSSINC CENSOR TABLES. Ciò offre un
+  controllo migliore se il comando di generazione tabella ha esito negativo.
+    <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

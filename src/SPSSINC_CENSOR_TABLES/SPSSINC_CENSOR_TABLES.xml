@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><Extension debug="false" version="1.0" xmlns="http://spss.com/clementine/extensions" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://spss.com/clementine/extensions http://xml.spss.com/clementine/extensions/CLEFSpecificationFile.xsd">
+  <ExtensionDetails copyright="Licensed Materials - Property of IBM.  IBM SPSS Products: Statistics Common (C) Copyright IBM Corp. 1989, 2014.  US Government Users Restricted Rights - Use, duplication or  disclosure restricted by GSA ADP Schedule Contract with IBM Corp." description="" id="SPSSINC_CENSOR_TABLES" label="" provider="SPSS, Inc." providerTag="spss" version="1.0"/>
+  <Resources>
+    <Bundle id="bundle1" path="SPSSINC_CENSOR_TABLES" type="properties"/>
+  </Resources>
+  <CommonObjects>
+    <Actions>
+      <Action id="SPSSINC_CENSOR_TABLES_action" imagePath="IBMdialogicon.png" label="Censor Table" labelKey="SPSSINC_CENSOR_TABLES_action.LABEL"/>
+    </Actions>
+  </CommonObjects>
+  <UserInterface>
+    <Controls>
+      <MenuItem action="SPSSINC_CENSOR_TABLES_action" offset="10" previousId="" showIcon="true" spssMenu="Utilities"/>
+    </Controls>
+  </UserInterface>
+  <Node id="SPSSINC_CENSOR_TABLES" label="Censor Table" labelKey="SPSSINC_CENSOR_TABLES.LABEL" type="modelBuilder">
+    <Properties>
+      <Property name="SPSSINC_CENSOR_TABLES" syntax="SPSSINC CENSOR TABLES&#10;%%critlabel%% %%testtype%% %%critvalue%%&#10;%%direction%% %%neighbors%%&#10;%%subtype%% %%process%%&#10;/OPTIONS %%hidecritfield%% %%censorcaption%% %%conditions%%&#10;%%caption%% %%text%%&#10;%%symbol%%"/>
+      <Property description="false" name="SPSSINC_CENSOR_TABLES_modal"/>
+      <Property defaultValue="" description="Option OMS table subtype for filtering table to process" descriptionKey="subtype_tooltip.LABEL" label="Table OMS Subtype:" labelKey="subtype.LABEL" name="subtype" syntax="SUBTYPE=&quot;%%ThisValue%%&quot;" valueType="string"/>
+      <Property defaultValue="Count" description="The text of the innermost label for the row or column to use for censoring" descriptionKey="critlabel_tooltip.LABEL" isRequired="true" label="Label of Censoring Statistic:" labelKey="critlabel.LABEL" name="critlabel" syntax="CRITLABEL=&quot;%%ThisValue%%&quot;" valueType="string"/>
+      <Property defaultValue="5" description="Test against this value" descriptionKey="critvalue_tooltip.LABEL" isRequired="true" label="Test Value:" labelKey="critvalue.LABEL" name="critvalue" syntax="CRITVALUE=%%ThisValue%%" valueType="string"/>
+      <Property defaultValue="item_6_a" description="Comparison type" descriptionKey="testtype_tooltip.LABEL" label="Type of Test:" labelKey="testtype.LABEL" name="testtype" syntax="TESTTYPE=&quot;%%ThisValue%%&quot;" valueType="enum">
+        <Enumeration>
+          <Enum label="&lt;" labelKey="item_6_a.LABEL" syntax="&lt;" value="item_6_a"/>
+          <Enum label="&lt;=" labelKey="testtype_b.LABEL" syntax="&lt;=" value="testtype_b"/>
+          <Enum label="=" labelKey="testtype_c.LABEL" syntax="=" value="testtype_c"/>
+          <Enum label="!=" labelKey="testtype_d.LABEL" syntax="!=" value="testtype_d"/>
+          <Enum label="&gt;=" labelKey="testtype_e.LABEL" syntax="&gt;=" value="testtype_e"/>
+          <Enum label="&gt;" labelKey="testtype_f.LABEL" syntax="&gt;" value="testtype_f"/>
+        </Enumeration>
+      </Property>
+      <Property defaultValue="" description="Offset of cells to censor from the censoring statistic" descriptionKey="neighbors_tooltip.LABEL" isRequired="true" label="Neighboring rows or columns to censor:" labelKey="neighbors.LABEL" name="neighbors" syntax="NEIGHBORS=%%ThisValue%%" valueType="string"/>
+      <Property defaultValue="item_8_a" description="Rows censors cells in same row; Columns in same column as censoringt statistic" descriptionKey="direction_tooltip.LABEL" label="Direction of Neighbors" labelKey="direction.LABEL" name="direction" syntax="%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="Row" descriptionKey="item_8_a_tooltip.LABEL" hasSubGroup="false" label="Row" labelKey="item_8_a.LABEL" mnemonic="O" mnemonicKey="item_8_a_mnemonic.VALUE" syntax="DIRECTION=ROW" value="item_8_a"/>
+          <Enum description="Column" descriptionKey="item_8_b_tooltip.LABEL" hasSubGroup="false" label="Column" labelKey="item_8_b.LABEL" mnemonic="U" mnemonicKey="item_8_b_mnemonic.VALUE" syntax="DIRECTION=COLUMN" value="item_8_b"/>
+        </Enumeration>
+      </Property>
+      <Property defaultValue="false" description="Check to hide the entire row or column of the censoring statistic" descriptionKey="hidecritfield_tooltip.LABEL" label="Hide criterion row or column" labelKey="hidecritfield.LABEL" name="hidecritfield" syntax="HIDECRITFIELD±" valueType="boolean"/>
+      <Property description="" descriptionKey="caption_tooltip.LABEL" label="Caption Text" labelKey="caption.LABEL" name="caption" syntax="%%ThisValue%%"/>
+      <Property defaultValue="false" description="Check to set custom caption text.  Add caption checkbox does not apply" descriptionKey="item_19_tooltip.LABEL" label="Custom caption text" labelKey="item_19.LABEL" name="item_19" syntax="CAPTION=±" valueType="boolean"/>
+      <Property defaultValue="" description="Custom caption text" descriptionKey="text_tooltip.LABEL" label="Custom text:" labelKey="text.LABEL" name="text" syntax="&quot;%%ThisValue%%&quot;" valueType="string"/>
+      <Property defaultValue="" description="One or more characters to replace the cell value for censored cells.  Default is blank" descriptionKey="symbol_tooltip.LABEL" label="Symbol for Censored Cells:" labelKey="symbol.LABEL" name="symbol" syntax="SYMBOL=&quot;%%ThisValue%%&quot;" valueType="string"/>
+      <Property description="" descriptionKey="censorcaption_tooltip.LABEL" label="Table Caption" labelKey="censorcaption.LABEL" name="censorcaption" syntax="%%ThisValue%%"/>
+      <Property defaultValue="true" description="" descriptionKey="item_23_tooltip.LABEL" label="Append caption with censoring information" labelKey="item_23.LABEL" name="item_23" syntax="APPENDCAPTION=YES±APPENDCAPTION=NO" valueType="boolean"/>
+      <Property defaultValue="item_24_a" description="" descriptionKey="conditions_tooltip.LABEL" label="Conditions" labelKey="conditions.LABEL" name="conditions" syntax="CONDITIONALCAPTION=%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="" descriptionKey="item_24_a_tooltip.LABEL" hasSubGroup="false" label="If cells actually censored" labelKey="item_24_a.LABEL" mnemonic="I" mnemonicKey="item_24_a_mnemonic.VALUE" syntax="YES" value="item_24_a"/>
+          <Enum description="" descriptionKey="always_tooltip.LABEL" hasSubGroup="false" label="Always" labelKey="always.LABEL" mnemonic="W" mnemonicKey="always_mnemonic.VALUE" syntax="NO" value="always"/>
+        </Enumeration>
+      </Property>
+      <Property defaultValue="item_49_a" description="" descriptionKey="process_tooltip.LABEL" label="Table Instances to Process" labelKey="process.LABEL" name="process" syntax="PROCESS=%%ThisValue%%" valueType="enum">
+        <Enumeration>
+          <Enum description="Censor only the last table.  If a type was specified, censor the last table of that type." descriptionKey="item_49_a_tooltip.LABEL" hasSubGroup="false" label="Last" labelKey="item_49_a.LABEL" mnemonic="L" mnemonicKey="item_49_a_mnemonic.VALUE" syntax="PRECEDING" value="item_49_a"/>
+          <Enum description="Censor all tables.  If a type was specified, censor all tables of that type." descriptionKey="item_49_b_tooltip.LABEL" hasSubGroup="false" label="All" labelKey="item_49_b.LABEL" mnemonic="A" mnemonicKey="item_49_b_mnemonic.VALUE" syntax="ALL" value="item_49_b"/>
+        </Enumeration>
+      </Property>
+    </Properties>
+    <UserInterface>
+      <Tabs>
+        <Tab helpLink="SPSSINC_CENSOR_TABLES.htm">
+          <PropertiesPanel>
+            <TextBoxControl mnemonic="B" mnemonicKey="subtype_mnemonic.VALUE" property="subtype">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="5" gridWidth="1" rowWeight="0.0"/>
+            </TextBoxControl>
+            <TextBoxControl mnemonic="L" mnemonicKey="critlabel_mnemonic.VALUE" property="critlabel">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+            </TextBoxControl>
+            <TextBoxControl mnemonic="V" mnemonicKey="critvalue_mnemonic.VALUE" property="critvalue">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="2" gridWidth="1" rowWeight="0.0"/>
+            </TextBoxControl>
+            <ComboBoxControl attr_name="" based_on="variable_names" mnemonic="T" mnemonicKey="testtype_mnemonic.VALUE" property="testtype" target_id="" use_values="false">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="1" gridWidth="1" rowWeight="0.0"/>
+            </ComboBoxControl>
+            <TextBoxControl mnemonic="N" mnemonicKey="neighbors_mnemonic.VALUE" property="neighbors">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="3" gridWidth="1" rowWeight="0.0"/>
+            </TextBoxControl>
+            <RadioButtonGroupControl property="direction" rows="2" useSubPanel="false">
+              <Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="4" gridWidth="1" rowWeight="1.0"/>
+              <RadioButton property="item_8_a"/>
+              <RadioButton property="item_8_b"/>
+            </RadioButtonGroupControl>
+            <CheckBoxControl mnemonic="H" mnemonicKey="hidecritfield_mnemonic.VALUE" property="hidecritfield">
+              <Layout columnWeight="1.0" fill="none" gridColumn="1" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+            </CheckBoxControl>
+            <PropertiesPanel id="caption" label="Caption Text" labelKey="caption.LABEL">
+              <Layout columnWeight="1.0" fill="both" gridColumn="1" gridRow="2" gridWidth="1" rowWeight="1.0"/>
+              <CheckBoxControl labelAbove="true" mnemonic="M" mnemonicKey="item_19_mnemonic.VALUE" property="item_19">
+                <Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+              </CheckBoxControl>
+              <TextBoxControl mnemonic="U" mnemonicKey="text_mnemonic.VALUE" property="text">
+                <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="1" gridWidth="1" leftIndent="8" rowWeight="1.0"/>
+              </TextBoxControl>
+            </PropertiesPanel>
+            <TextBoxControl mnemonic="S" mnemonicKey="symbol_mnemonic.VALUE" property="symbol">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="1" gridRow="3" gridWidth="1" rowWeight="0.0"/>
+            </TextBoxControl>
+            <PropertiesPanel id="censorcaption" label="Table Caption" labelKey="censorcaption.LABEL">
+              <Layout columnWeight="1.0" fill="both" gridColumn="1" gridRow="1" gridWidth="1" rowWeight="1.0"/>
+              <CheckBoxControl labelAbove="true" mnemonic="A" mnemonicKey="item_23_mnemonic.VALUE" property="item_23">
+                <Layout columnWeight="1.0" fill="none" gridColumn="0" gridRow="0" gridWidth="1" rowWeight="0.0"/>
+              </CheckBoxControl>
+              <RadioButtonGroupControl property="conditions" rows="2" useSubPanel="false">
+                <Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="1" gridWidth="1" leftIndent="8" rowWeight="1.0"/>
+                <RadioButton property="item_24_a"/>
+                <RadioButton property="always"/>
+              </RadioButtonGroupControl>
+            </PropertiesPanel>
+            <RadioButtonGroupControl property="process" rows="2" useSubPanel="false">
+              <Layout columnWeight="1.0" fill="both" gridColumn="0" gridRow="6" gridWidth="1" rowWeight="1.0"/>
+              <RadioButton property="item_49_a"/>
+              <RadioButton property="item_49_b"/>
+            </RadioButtonGroupControl>
+            <StaticText text="This dialog was created using a later version of IBM SPSS Statistics\nand certain features may not function as intended." textKey="v17_warning.LABEL">
+              <Layout columnWeight="1.0" fill="horizontal" gridColumn="0" gridRow="7" gridWidth="1" rowWeight="1.0"/>
+            </StaticText>
+          </PropertiesPanel>
+        </Tab>
+      </Tabs>
+    </UserInterface>
+  </Node>
+</Extension>

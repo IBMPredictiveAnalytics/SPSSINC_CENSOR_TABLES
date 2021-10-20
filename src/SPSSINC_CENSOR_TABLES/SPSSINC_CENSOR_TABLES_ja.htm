@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+
+"text/html; charset=utf-8">
+
+  <title>テーブルの調査</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>テーブルの調査</h1>このダイアログを使用して、テーブル内の指定された統計量の値に基づいて、ピボット テーブル内の特定のセルを空白にするか、その他の何らかの方法で覆い隠します。例えば、セル度数が 5 未満である場合に平均統計量を空白にすることができます。
+<p><i>「調査対象統計量のラベル」</i>フィールドに、調査対象統計量を含む行または列のラベルの最も内側のレベルのテキストを入力します。ラベルでは、テキストの大/小文字を一致させ、空白文字を含める必要があります。</p>
+
+  <p>ドロップダウン リストから、実行する比較のタイプを選択します。実行される検定は以下のとおりです。<br>
+  abs(cell value) testtype critvalue.<br>
+例えば、abs(cell count) &lt; 5 です。</p>
+
+  <p><i>「調査する近傍の行または列」</i>フィールドに、調査するセルをリストします。調査するセルは、調査対象統計量からの相対位置によって示されます。負の数値は調査対象セルの左または上の位置を示し、正の数値はそのセルの右または下の位置を示します。調査対象統計量自体を調査するには、リスト内に 0 を含めます。</p>
+
+  <p>例えば、テーブルに度数、平均、および標準偏差の列がある場合は、リスト内に「1 2」を入力して、度数に基づいて平均および標準偏差を調査できます。<br><br></p>
+
+  <p><i>「テーブル OMS サブタイプ」</i>フィールドに、処理するテーブルの OMS サブタイプを指定できます。インスタンス上のアウトライン内で右クリックするか、「ユーティリティー」→「OMS 識別子」を選択して、サブタイプを見つけることができます。大/小文字の区別および空白文字は認識されません。</p>
+
+  <p>デフォルトでは、ビューア内の最新のピボット テーブルに調査が適用されます。すべてのテーブルを調査するには「すべて」を指定できます。
+  OMS テーブルのサブタイプが指定されている場合、調査はそのタイプのテーブルに限定されます。
+</p>
+  
+  <p>調査対象統計量を含む行または列の全体を非表示にするには、<i>「条件の行または列を非表示にする」</i>ボックスにチェック マークを付けます。</p>
+
+  <p>デフォルトでは、調査されたセルの数および調査対象統計量の名前を示すキャプション テキストが追加されます。これを無効にするには、<i>「調査対象情報を含むキャプションを追加」</i>のチェック マークを外します。</p>
+
+  <p>該当するラジオ ボタンを選択して、キャプションを常に表示するか、セルが実際に調査された場合にのみ表示するかを制御できます。</p>
+
+  <p>カスタム キャプション テキストを指定するには、<i>「カスタム キャプション テキスト」</i>にチェック マークを付け、その下にテキストを入力します。</p>
+
+  <p>デフォルトでは、調査されたセルは空白になります。別の置換テキストを指定するには、<i>「調査されたセルの記号」</i>に 1 文字以上の文字列を入力します。</p>
+
+  <h2>前提条件</h2>Python Programmability プラグインが必要です。これは、SPSS Statistics インストール CD からインストールするか、SPSS Developer Central (www.spss.com/devcentral) からダウンロードすることができます。
+
+  <h2>シンタックスを通じて使用可能な追加機能</h2><b>SPSSINC CENSOR TABLES /HELP</b> を実行すると、完全なシンタックス表が生成されます。シンタックスには、SPSSINC CENSOR TABLES コマンド内でテーブルを生成するために実行されるコマンドを含めることができます。これにより、テーブル生成コマンドが失敗した場合でも適切に制御できます。
+<hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

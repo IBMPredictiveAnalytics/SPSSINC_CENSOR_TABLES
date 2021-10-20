@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>检剔表</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>检剔表</h1>通过使用此对话框，可以在透视表中按某个指定统计的值删除或隐藏特定单元格。例如，如果单元格计数小于 5，那么可以删除平均值统计。
+
+  <p>在<i>检剔统计标签</i>字段中，针对包含检剔统计的行或列输入最内级别标签的文本。文本大小写必须匹配，并且必须包括该标签中的所有空格。</p>
+
+  <p>从下拉列表中选择要执行的比较类型。执行的检验是<br>abs(单元格值) testtype critvalue。<br>
+  例如，abs(单元格计数) &lt; 5。</p>
+
+  <p>在<i>要检剔的相邻行或列</i>字段中列出要检剔的单元格。要检剔的单元格由它们相对于检剔统计的位置指示。负数表示位于检剔单元格的左侧或上方，而正数表示位于该单元格的右侧或下方。在列表中包括 0 可以对检剔统计本身进行检剔。</p>
+
+  <p>例如，如果表中含有列计数、平均值和标准差，那么可以通过在列表中输入<br>1 2<br>，根据计数对平均值和标准差进行检剔。</p>
+
+  <p>可以在<i>表 OMS 子类型</i>字段中指定所要处理的表的 OMS 子类型。您可以通过在大纲中右键单击实例或根据 Utilties/OMS 标识确定子类型。大小写和空格无关紧要。</p>
+
+  <p>缺省情况下，在查看器中将对最新的透视表进行检剔。您可以指定 ALL 以检剔所有表。如果指定了 OMS 表子类型，那么检剔限制于该类型的表。
+</p>
+  
+  <p>选中<i>隐藏准则行或列</i>框可以隐藏包含检剔统计的整行或整列。</p>
+
+  <p>缺省情况下，将添加文字说明文本，以显示检剔单元格数以及检剔统计的名称。取消选中<i>添加含有检剔信息的文字说明</i>可以阻止上述操作。</p>
+
+  <p>通过选择相应的单选按钮，可以控制是始终显示此文字说明，还是仅在实际检剔单元格后才显示。</p>
+
+  <p>选中<i>定制文字说明文本</i>，然后在下面输入文本以指定定制文字说明文本。</p>
+
+  <p>缺省情况下，检剔的单元格将显示为空。通过在<i>检剔的单元格的符号</i>中输入由一个或多个字符构成的字符串，可以指定另一替换文本。</p>
+
+  <h2>必备软件</h2>需要 Python Programmability 插件。您可以使用
+SPSS Statistics 安装 CD 来安装此插件，也可以从
+SPSS Developer Central (www.spss.com/devcentral) 下载此插件。
+
+  <h2>通过语法提供的其他功能</h2>执行 <b>SPSSINC CENSOR TABLES /HELP</b>
+可以生成完整的语法图表。可以在语法中包括所要执行的命令，从而在
+SPSSINC CENSOR TABLES 命令中生成表。在表生成命令失败的情况下，此功能可以提供更完善的控制。<hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

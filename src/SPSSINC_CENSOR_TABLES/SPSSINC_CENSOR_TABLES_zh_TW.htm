@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>設限表格</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>設限表格</h1>使用此對話框可根據表格中指定統計資料的值清空或遮蔽樞紐表中的特定資料格。例如，如果資料格計數小於 5，則可以清空平均值統計資料。<p>在欄位<i>設限統計資料的標籤</i>中，為包含設限統計資料的列或欄輸入標籤最內層的文字。您必須符合文字的大小寫，並且在標籤中包含任何空格。</p>
+
+  <p>從下拉清單中選取要執行的比較類型。執行的檢定為<br>
+  abs(資料格計數) 檢定類型 標準值。<br>
+  例如，abs(資料格計數) &lt; 5。</p>
+
+  <p>列出要在<i>要設限的鄰接列或欄</i>欄位中設限的資料格。要設限的資料格由其相對於設限統計資料的位置來指示。負數表示在設限資料格的左側或上方，正數表示在該資料格的右側或下方。在清單中包含 0 以為設限統計資料本身設限。</p>
+
+  <p>例如，如果表格有欄計數、平均值及標準差，就可以在清單中輸入<br>1 2<br>，根據計數來設限平均值及標準差。</p>
+
+  <p>您可以指定要在<i>表格 OMS 子類型</i>欄位中處理的表格的 OMS 子類型。您可以在實例的大綱中或從公用程式/OMS ID 中按一下滑鼠右鍵，藉此來尋找子類型。大小寫和空格並不重要。</p>
+
+  <p>依預設，設限將套用至檢視器中的最後一個樞紐表。您可以指定 All 來設限所有表格。如果指定 OMS 表格子類型，則設限將限制為該類型的表格。
+</p>
+  
+  <p>勾選<i>隱藏準則列或欄</i>方框可隱藏包含設限統計資料的整個列或欄。</p>
+
+  <p>依預設，會新增標題文字，顯示設限的資料格數和設限統計資料的名稱。取消勾選<i>新增有設限資訊的標題</i>可阻止此操作。</p>
+
+  <p>您可以選擇適當的圓鈕來控制標題是一律出現還是僅在實際設限任何資料格時出現。</p>
+
+  <p>勾選<i>自訂標題文字</i>並在下方輸入文字可自訂標題文字。</p>
+
+  <p>依預設，設限的資料格為空白。在<i>設限資料格的符號</i>中輸入一或多個字元的字串可指定不同的取代文字。</p>
+
+  <h2>必備項目
+</h2>Python Programmability Plug-in 是必要的。它可以從 SPSS Statistics 安裝 CD 安裝，或從 SPSS Developer Central (www.spss.com/devcentral) 下載。<h2>透過語法可用的其他功能</h2>執行 <b>SPSSINC CENSOR TABLES /HELP</b> 會產生完整的語法圖表。您可以在語法中包含要執行的指令，以在 SPSSINC CENSOR TABLES 指令中產生表格。如果表格產生指令失敗，這個選項可以更好地進行控制。
+<hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

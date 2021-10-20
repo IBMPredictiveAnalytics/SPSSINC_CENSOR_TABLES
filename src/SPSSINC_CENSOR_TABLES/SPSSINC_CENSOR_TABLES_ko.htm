@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>중도절단표</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>중도절단표</h1>이 대화 상자를 사용하여 표에 있는
+지정된 통계 값을 기초로 피벗표의 특정 셀을
+공백 처리하거나 흐리게 표시하십시오. 예를 들어 셀 개수가 5보다 적으면
+  중간 통계를 공백 처리할 수 있습니다.  <p><i>중도절단 통계 레이블</i> 필드에서 중도절단 통계를 포함하는 행 또는 열에
+대해 레이블의 최하위 레벨 텍스트를 입력하십시오. 텍스트의 대소문자를 매치시켜야 하고 레이블에 공백을 포함시켜야 합니다.</p>
+
+  <p>드롭 다운 목록에서 수행할 비교 유형을 선택하십시오. 수행되는 검정은 다음과 같습니다.<br>
+  abs(cell value) testtype critvalue<br>
+  예제: abs(cell count) &lt; 5.</p>
+
+  <p><i>중도절단할 이웃 행 또는 열</i> 필드에서 중도절단할 셀을 표시합니다. 중도절단할
+  셀은 중도절단 통계에 상대적인 위치로 표시됩니다. 음수는 중도절단 셀의 왼쪽 또는 위이고,
+  양수는 해당 셀의 오른쪽 또는 아래입니다. 중도절단 통계 자체를 중도절단하려면 목록에 0을 포함하십시오.</p>
+
+  <p>예를 들어 표에 열 빈도, 평균 및 표준편차가 있는 경우, 목록에 <br>
+  1 2<br>
+  를 입력하면 빈도를 기초로 평균과 표준편차를 중도절단할 수 있습니다.</p>
+
+  <p><i>표 OMS 하위 유형</i> 필드에서 처리할 표의 OMS
+  하위 유형을 지정할 수 있습니다. 인스턴스 개요에서 또는 유틸리티/OMS 식별자에서
+  마우스 오른쪽 단추를 클릭하여 하위 유형을 찾을 수 있습니다. 케이스와 공백은 아무 의미가 없습니다.</p>
+
+  <p>기본적으로 중도절단은 뷰어에서 최신 피벗표에
+적용됩니다. 모두를 지정하여 모든 표를 중도절단할 수 있습니다. OMS 표 하위 유형이 지정된 경우 해당 유형의 표만 중도절단하도록
+중도절단이 제한됩니다. </p>
+  
+  <p>중도절단 통계가 있는 열 또는 행 전체를 숨기려면 <i>기준 행 또는 열 숨기기</i> 상자를
+  선택하십시오.</p>
+
+  <p>기본적으로 중도절단 통계 이름 및 중도절단하는 셀 수를 표시하는 캡션 텍스트가
+  추가됩니다. 추가되지 않도록 하려면 <i>중도절단 정보가 있는 캡션 추가</i>를 선택 취소하십시오.</p>
+
+  <p>캡션이 항상 표시될 것인지 또는 해당 단일 선택 단추를 선택하여 셀이 실제로
+  중도절단될 경우에만 표시되는지를 제어할 수 있습니다.</p>
+
+  <p><i>사용자 정의 캡션 텍스트</i>를 선택하고 아래에 사용자 정의 캡션 텍스트를 입력하십시오.</p>
+
+  <p>기본적으로 중도절단되는 셀은 공백으로 구성됩니다. <i>중도절단할 셀 기호</i>에
+  하나 이상의 문자열을 입력하여 다른 대체 텍스트를 지정하십시오.</p>
+
+  <h2>필수조건</h2>Python Programmability 플러그인이 필요합니다. SPSS Statistics 설치 CD에서 설치하거나 SPSS Developer Central
+  (www.spss.com/devcentral)에서 다운로드할 수 있습니다.  <h2>명령문을 통해 사용 가능한 추가 기능</h2><b>SPSSINC CENSOR TABLES /HELP</b>를
+  실행하면 완벽한 명령문 도표가 생성됩니다. 명령문에서 SPSSINC CENSOR TABLES 명령문 내에 표를 실행하기 위해
+  실행할 명령을 포함시킬 수 있습니다. 그러면 표 생성 명령이 실패하는 경우 제어할 수 있습니다.   <hr>
+
+  <p style="font-size:80%;">
+© Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>

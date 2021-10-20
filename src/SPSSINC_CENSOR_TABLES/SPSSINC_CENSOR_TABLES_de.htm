@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content=
+  "text/html; charset=utf-8">
+
+  <title>Tabelle zensieren</title>
+  <style type="text/css">
+
+  <!-- 
+
+  H1 {font-weight:bold; color:#006699; font-size:125%; }
+  H2 {font-weight:bold; color:#006699; font-size:110%; }
+  TABLE {font-size:100%;}
+
+  /* paragraph tags */
+  .step {text-indent: -1.3em; margin-left:1.3em; margin-top: 0px;}
+  .menuselection {margin-left:10px}
+  .bullet {list-style-type: disc;margin-top:12px; margin-left:36px; text-indent:-1em; }
+  .codeblock {background-color: #ffffe6; display:block; margin-left:5px; padding:5px;}
+
+  /* inline tags */
+  .screen {font-weight:bold; color:#408080}                       /*** used refer to on-screen text ***/
+  .name {font-style: italic}                                                       /*** used to tag names, such as variable names, file names, and so forth ***/
+  .runinhead {font-weight: bold} 
+  .superscript {vertical-align:super; font-size:80%}
+  .subscript {vertical-align:sub; font-size:80%}
+
+
+  --> 
+  </style>
+</head>
+
+<body>
+  <h1>Tabelle zensieren</h1>Verwenden Sie dieses Dialogfeld, um bestimmte Zellen in einer Pivot-Tabelle basierend auf dem Wert einer angegebenen Statistik in der Tabelle mit Leerzeichen zu überschreiben oder auf andere Weise unkenntlich zu machen. Sie könnten z.&nbsp;B. die MEAN-Statistik mit Leerzeichen überschreiben, wenn die Zellenanzahl unter 5 liegt.
+
+  <p>Geben Sie in das Feld <i>Beschriftung der Zensurstatistik</i> den Text der innersten Ebene der Beschriftung für die Zeile oder Spalte ein, die die Zensurstatistik enthält. Sie müssen die Groß-/Kleinschreibung des Texts beachten und ggf. Leerzeichen in die Beschriftung einschließen.</p>
+
+  <p>Wählen Sie den durchzuführenden Typ von Vergleich aus der Dropdown-Liste aus. Durchgeführter Test:<br>
+Abs(Zellenwert) Testtyp Testwert.<br>
+  Beispiel: Abs(Zellenanzahl) &lt; 5.</p>
+
+  <p>Listen Sie die zu zensierenden Zellen im <i>Benachbarte zu zensierende Zeilen oder Spalten</i> auf. Die zu zensierenden Zellen werden durch ihre Position relativ zur Zensurstatistik angegeben.
+  Negative Zahlen befinden sich links oder über der Zensurzelle, positive Zahlen rechts oder unter dieser Zelle. Schließen Sie 0 in die Liste ein, um die Zensurstatistik selbst zu zensieren.</p>
+
+  <p>Wenn eine Tabelle z.&nbsp;B. Spaltenanzahl, Mittelwert und Standardabweichung hat, könnten Sie den Mittelwert und die Standardabweichung basierend auf der Anzahl zensieren, indem Sie <br>
+1 2<br>
+in die Liste eingeben.</p>
+
+  <p>Sie können den zu verarbeitenden OMS-Tabellenuntertyp im Feld <i>OMS-Tabellenuntertyp</i> angeben. Sie können den Untertyp ermitteln, indem Sie mit der rechten Maustaste in die Gliederung auf einer Instanz klicken oder indem Sie <i>Extras/OMS-IDs</i> auswählen. Groß-/Kleinschreibung und Leerzeichen sind nicht von Bedeutung.</p>
+
+  <p>Standardmäßig wird die Zensur auf die letzte Pivot-Tabelle im Viewer angewendet. Sie können <b>Alle</b> angeben, um alle Tabellen zu zensieren.
+  Wenn ein OMS-Tabellenuntertyp angegeben wird, wird die Zensur auf diesen Tabellentyp begrenzt.  
+</p>
+  
+  <p>Wählen Sie das Feld <i>Kriteriumszeile oder -spalte ausblenden</i> aus, um die gesamte Zeile oder Spalte mit der Zensurstatistik auszublenden.</p>
+
+  <p>Standardmäßig wird Titelzeilentext hinzugefügt, der die Anzahl der zensierten Zellen und den Namen der Zensurstatistik angibt. Wählen Sie <i>Titelzeile mit Zensurinformationen hinzufügen</i> ab, um dies zu verhindern.</p>
+
+  <p>Sie können festlegen, ob die Titelzeile immer angezeigt wird oder nur, wenn tatsächlich Zellen zensiert wurden. Wählen Sie dazu das entsprechende Optionsfeld aus.</p>
+
+  <p>Wählen Sie <i>Angepasster Titelzeilentext</i> aus und geben Sie unten den Text ein, der als benutzerdefinierter Titelzeilentext verwendet werden soll.</p>
+
+  <p>Standardmäßig werden zensierte Zellen leer dargestellt. Geben Sie ein Zeichen oder eine Zeichenfolge in <i>Symbol für zensierte Zellen</i> ein, um einen anderen Ersetzungstext festzulegen.</p>
+
+  <h2>Voraussetzungen</h2>Das Python-Programmierungs-Plug-in ist erforderlich. Es kann von der SPSS Statistics-Installations-CD installiert oder von SPSS Developer Central (www.spss.com/devcentral) heruntergeladen werden.
+
+  <h2>Weitere über Syntax verfügbare Funktionen</h2>Die Ausführung von <b>SPSSINC CENSOR TABLES /HELP</b> erzeugt ein Diagramm der vollständigen Syntax. In der Syntax können Sie den Befehl einschließen, der im Befehl SPSSINC CENSOR TABLES ausgeführt werden soll, um die Tabelle zu erstellen. Dies bietet bessere Kontrolle, wenn der Befehl zur Tabellenerstellung fehlschlägt.
+    <hr>
+
+  <p style="font-size:80%;">
+  © Copyright IBM Corp. 1989, 2014</p>
+</body>
+</html>
